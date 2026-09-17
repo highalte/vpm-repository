@@ -1,0 +1,43 @@
+name: Create VRCAM v0.9.3 draft release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  create-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create draft release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          RELEASE_BODY: |
+            VRCAM 0.9.3 Beta のVCC / VPM配布用リリースです。
+
+            - Package: com.highalte.vrcam
+            - Unity: 2022.3
+            - SHA-256: 5E215FA121B9D464B3BF448F9BCCAF2AA2C2C4412395AAED28DAD8E51069005C
+            - ByteLength: 219257
+
+            VCCリポジトリからの導入方法は、リモート導入検証の完了後に案内します。
+        run: |
+          set -euo pipefail
+
+          if gh api "repos/${REPOSITORY}/releases/tags/v0.9.3" >/dev/null 2>&1; then
+            echo "Release v0.9.3 already exists."
+            exit 1
+          fi
+
+          gh api --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "repos/${REPOSITORY}/releases" \
+            -f tag_name='v0.9.3' \
+            -f name='VRCAM 0.9.3 Beta (VCC / VPM)' \
+            -f body="$RELEASE_BODY" \
+            -F draft=true \
+            -F prerelease=false
