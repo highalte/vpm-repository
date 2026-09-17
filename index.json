@@ -1,0 +1,27 @@
+{
+  "name": "highalte",
+  "id": "com.highalte.vpm",
+  "url": "https://highalte.github.io/vpm-repository/index.json",
+  "author": "highalte",
+  "packages": {
+    "com.highalte.vrcam": {
+      "versions": {
+        "0.9.3": {
+          "name": "com.highalte.vrcam",
+          "displayName": "VRCAM",
+          "version": "0.9.3",
+          "unity": "2022.3",
+          "description": "VRChat向け Unityアセット管理ツール",
+          "author": {
+            "name": "highalte",
+            "email": "highalte@gmail.com",
+            "url": "https://highalte.booth.pm/"
+          },
+          "license": "SEE LICENSE IN LICENSE.txt",
+          "url": "https://github.com/highalte/vpm-repository/releases/download/v0.9.3/com.highalte.vrcam-0.9.3.zip",
+          "zipSHA256": "5E215FA121B9D464B3BF448F9BCCAF2AA2C2C4412395AAED28DAD8E51069005C"
+        }
+      }
+    }
+  }
+}
